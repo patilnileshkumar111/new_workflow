@@ -29,7 +29,7 @@ jobs:
 
     - name: Update application Repo
       run: |
-        git clone https://${{ secrets.GITOPS_PAT }}@github.com/patilnileshkumar111/new_workflow.git
+        git clone --recurse-submodules https://${{ secrets.GITOPS_PAT }}@github.com/patilnileshkumar111/new_workflow.git
         cd new_workflow
         sed -i "s|image:.*|image: nilesh1234/demo-nginix:nilesh-${GITHUB_SHA}|g" argocd_repo/dep.yaml
         git config user.name "gha"
