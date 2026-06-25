@@ -25,15 +25,15 @@ jobs:
       with:
         context: .
         push: true
-        tags: nilesh1234/demo-nginix:np-${{ github.sha }}
+        tags: nilesh1234/demo-nginix:nilesh-${{ github.sha }}
 
     - name: Update application Repo
       run: |
         git clone https://${{ secrets.GITOPS_PAT }}@github.com/patilnileshkumar111/new_workflow.git
-        cd new_workflow/argocd_repo/
-        sed -i "s|image:.*|image: nilesh1234/demo-nginix:np-${GITHUB_SHA}|g" dep.yaml
+        cd new_workflow
+        sed -i "s|image:.*|image: nilesh1234/demo-nginix:nilesh-${GITHUB_SHA}|g" argocd_repo/dep.yaml
         git config user.name "gha"
         git config user.email "gha@github.com"
         git add .
-        git commit -m "update image tag to np-${GITHUB_SHA}"
+        git commit -m "update image tag to nilesh-${GITHUB_SHA}"
         git push
